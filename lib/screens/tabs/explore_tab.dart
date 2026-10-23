@@ -339,6 +339,19 @@ class _ExploreTabState extends State<ExploreTab> {
                           ? Image.network(
                               movie.posterUrl!,
                               fit: BoxFit.cover,
+                              loadingBuilder: (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Container(
+                                  color: Colors.grey.shade200,
+                                  child: const Center(
+                                    child: SizedBox(
+                                      width: 22,
+                                      height: 22,
+                                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                                    ),
+                                  ),
+                                );
+                              },
                               errorBuilder: (_, _, _) => const Center(
                                 child: Icon(Icons.broken_image, color: Colors.grey),
                               ),

@@ -1,12 +1,29 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class TmdbConfig {
-  static String get apiKey =>
-      dotenv.env['TMDB_API_KEY'] ?? 'd4d9e8262a0550c7b076be81d300fedc';
-
-  static String get readAccessToken =>
-      dotenv.env['TMDB_READ_ACCESS_TOKEN'] ??
+  static const String defaultApiKey = 'd4d9e8262a0550c7b076be81d300fedc';
+  static const String defaultAccessToken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGQ5ZTgyNjJhMDU1MGM3YjA3NmJlODFkMzAwZmVkYyIsIm5iZiI6MTc5Mjc2NTA4Mi41NjYwMDAyLCJzdWIiOiI2YWRiNmM5YTgxMzU1ODRmYTRkNjdiNDYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.hC4lk6ijl5NlIvnJ1FYW2zpAZDQmnUoS7j4itqhNdTc';
+
+  static String get apiKey {
+    try {
+      if (dotenv.isInitialized) {
+        final key = dotenv.env['TMDB_API_KEY'];
+        if (key != null && key.isNotEmpty) return key;
+      }
+    } catch (_) {}
+    return defaultApiKey;
+  }
+
+  static String get readAccessToken {
+    try {
+      if (dotenv.isInitialized) {
+        final token = dotenv.env['TMDB_READ_ACCESS_TOKEN'];
+        if (token != null && token.isNotEmpty) return token;
+      }
+    } catch (_) {}
+    return defaultAccessToken;
+  }
 
   static const String baseUrl = 'https://api.themoviedb.org/3';
   static const String imageUrlW500 = 'https://image.tmdb.org/t/p/w500';

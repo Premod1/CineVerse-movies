@@ -110,6 +110,15 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         Image.network(
                           backdropUrl ?? posterUrl!,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Container(
+                              color: Colors.grey.shade900,
+                              child: const Center(
+                                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                              ),
+                            );
+                          },
                           errorBuilder: (context, error, stackTrace) => Container(
                             color: Colors.grey.shade900,
                             child: const Center(
@@ -176,6 +185,15 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                   ? Image.network(
                                       posterUrl,
                                       fit: BoxFit.cover,
+                                      loadingBuilder: (context, child, loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return Container(
+                                          color: Colors.grey.shade800,
+                                          child: const Center(
+                                            child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                                          ),
+                                        );
+                                      },
                                       errorBuilder: (_, _, _) => const Icon(
                                         Icons.broken_image,
                                         color: Colors.white54,
@@ -460,6 +478,19 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                               ? Image.network(
                                   movie.posterUrl!,
                                   fit: BoxFit.cover,
+                                  loadingBuilder: (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Container(
+                                      color: Colors.grey.shade300,
+                                      child: const Center(
+                                        child: SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                   errorBuilder: (_, _, _) => const Icon(Icons.broken_image),
                                 )
                               : const Icon(Icons.movie),

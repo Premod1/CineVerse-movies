@@ -291,6 +291,15 @@ class _HomeTabState extends State<HomeTab> {
                       Image.network(
                         featured.backdropUrl ?? featured.posterUrl!,
                         fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            color: Colors.indigo.shade900,
+                            child: const Center(
+                              child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                            ),
+                          );
+                        },
                         errorBuilder: (_, _, _) => Container(
                           color: Colors.indigo.shade900,
                           child: const Icon(Icons.movie, size: 50, color: Colors.white30),
@@ -541,6 +550,19 @@ class _HomeTabState extends State<HomeTab> {
                         ? Image.network(
                             movie.posterUrl!,
                             fit: BoxFit.cover,
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Container(
+                                color: Colors.grey.shade200,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 22,
+                                    height: 22,
+                                    child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                                  ),
+                                ),
+                              );
+                            },
                             errorBuilder: (_, _, _) => const Center(
                               child: Icon(Icons.broken_image, color: Colors.grey),
                             ),
