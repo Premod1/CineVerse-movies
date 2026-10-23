@@ -66,9 +66,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard_outlined),
-              activeIcon: Icon(Icons.dashboard),
-              label: 'Home',
+              icon: Icon(Icons.movie_outlined),
+              activeIcon: Icon(Icons.movie),
+              label: 'Movies',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.explore_outlined),

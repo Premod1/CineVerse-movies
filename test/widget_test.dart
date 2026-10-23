@@ -16,8 +16,8 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify navigating to main navigation with footer menu
-    expect(find.text('Dashboard'), findsOneWidget);
-    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('CineVerse'), findsOneWidget);
+    expect(find.text('Movies'), findsOneWidget);
     expect(find.text('Explore'), findsOneWidget);
     expect(find.text('Alerts'), findsOneWidget);
     expect(find.text('Profile'), findsOneWidget);
