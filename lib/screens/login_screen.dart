@@ -39,21 +39,44 @@ class _LoginScreenState extends State<LoginScreen> {
           ? _usernameController.text.trim()
           : 'Admin';
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Login successful! Welcome, $username'),
-          backgroundColor: Colors.green,
-          duration: const Duration(seconds: 2),
-        ),
-      );
 
-      // Navigate to the main screen with footer menu
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MainNavigationScreen(username: username),
-        ),
-      );
+      showDialog(context: context, builder: (context) {
+        return AlertDialog(
+          title: const Text('Login Successful'),
+          content: Text('Welcome, $username!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                // Navigate to the main screen with footer menu
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainNavigationScreen(username: username),
+                  ),
+                );
+              },
+              child: const Text('Continue'),
+            ),
+          ],
+        );
+      });
+
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text('Login successful! Welcome, $username'),
+      //     backgroundColor: Colors.green,
+      //     duration: const Duration(seconds: 2),
+      //   ),
+      // );
+
+      // // Navigate to the main screen with footer menu
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => MainNavigationScreen(username: username),
+      //   ),
+      // );
     });
   }
 
